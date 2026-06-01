@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KI & Automation Mastery – Von 0 auf automatisiertes Business in 6 Wochen</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #04040a;
+  --surface: #080810;
+  --card: #0d0d18;
+  --border: #16162a;
+  --purple: #6c47ff;
+  --purple-glow: rgba(108,71,255,0.15);
+  --cyan: #00d4ff;
+  --pink: #ff2d55;
+  --green: #10b981;
+  --amber: #f59e0b;
+  --text: #e8e6f0;
+  --muted: #5a5870;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px 60px;
+  position: relative;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% -10%, rgba(108,71,255,0.2) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 10% 80%, rgba(0,212,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 90% 70%, rgba(255,45,85,0.06) 0%, transparent 60%),
+    var(--bg);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--purple), transparent);
+  opacity: 0.4;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--purple);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  animation: fadeUp 0.7s ease both;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--purple);
+  opacity: 0.4;
+}
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(42px, 9vw, 110px);
+  line-height: 0.95;
+  letter-spacing: -2px;
+  color: #fff;
+  animation: fadeUp 0.7s 0.1s ease both;
+  max-width: 900px;
+}
+
+.hero-title .accent {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.6;
+  margin-top: 24px;
+  animation: fadeUp 0.7s 0.2s ease both;
+  font-weight: 400;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40px;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+
+.stat-pill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-pill strong { color: var(--text); }
+
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+
+.btn-main {
+  background: linear-gradient(135deg, var(--purple), #9c47ff);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 44px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s;
+  box-shadow: 0 0 40px rgba(108,71,255,0.3);
+}
+
+.btn-main:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 60px rgba(108,71,255,0.5);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 18px 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--purple); color: var(--text); }
+
+.hero-price-note {
+  margin-top: 24px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  animation: fadeUp 0.7s 0.5s ease both;
+}
+
+.hero-price-note span { color: var(--green); }
+
+/* ── PAIN SECTION ── */
+.pain {
+  padding: 100px 24px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.container { max-width: 1080px; margin: 0 auto; }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--purple);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-weight: 800;
+  font-size: clamp(36px, 6vw, 68px);
+  line-height: 1;
+  letter-spacing: -1px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.section-title em {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cyan);
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.pain-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.pain-card:hover { border-color: rgba(108,71,255,0.3); }
+
+.pain-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.pain-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.pain-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+}
+
+/* ── KURS OVERVIEW ── */
+.overview {
+  padding: 100px 24px;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 64px;
+}
+
+.big-number {
+  font-family: var(--mono);
+  font-size: clamp(80px, 15vw, 160px);
+  font-weight: 700;
+  color: var(--border);
+  line-height: 1;
+  letter-spacing: -4px;
+  display: block;
+  margin-bottom: -20px;
+}
+
+.module-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.module-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.module-item:last-child { border-bottom: none; }
+
+.module-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.module-info {}
+
+.module-week {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.module-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.module-sub {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ── CURRICULUM ── */
+.curriculum {
+  padding: 100px 24px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.mod-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.mod-card:hover { transform: translateY(-4px); border-color: rgba(108,71,255,0.25); }
+
+.mod-header {
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.mod-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.mod-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.mod-sub { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+
+.mod-lessons {
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lesson-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(232,230,240,0.7);
+}
+
+.lesson-row .nr {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  flex-shrink: 0;
+  width: 28px;
+}
+
+.lesson-row .dur {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── BONI ── */
+.boni { padding: 100px 24px; }
+
+.boni-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.bonus-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.bonus-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+}
+
+.bonus-card:hover { border-color: rgba(108,71,255,0.3); transform: translateY(-4px); }
+
+.bonus-wert {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--green);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.bonus-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+.bonus-name { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.bonus-desc { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 400; }
+
+/* ── PREISBOX ── */
+.pricing {
+  padding: 100px 24px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.price-box {
+  max-width: 580px;
+  margin: 56px auto 0;
+  background: var(--card);
+  border: 1px solid rgba(108,71,255,0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 80px rgba(108,71,255,0.1);
+}
+
+.price-top {
+  background: linear-gradient(135deg, rgba(108,71,255,0.15), rgba(0,212,255,0.05));
+  padding: 40px 40px 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.price-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--purple);
+  margin-bottom: 16px;
+}
+
+.price-main {
+  font-size: 80px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -3px;
+}
+
+.price-currency {
+  font-size: 32px;
+  font-weight: 400;
+  vertical-align: super;
+  color: var(--muted);
+}
+
+.price-note-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.price-includes {
+  padding: 28px 40px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.include-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  font-size: 14px;
+  color: rgba(232,230,240,0.8);
+  border-bottom: 1px solid rgba(22,22,42,0.5);
+}
+
+.include-row:last-child { border-bottom: none; }
+
+.check { color: var(--green); font-size: 14px; flex-shrink: 0; }
+
+.price-cta-area {
+  padding: 32px 40px;
+}
+
+.price-guarantee {
+  margin-top: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ── FAQ ── */
+.faq { padding: 100px 24px; }
+
+.faq-list {
+  max-width: 680px;
+  margin: 56px auto 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+}
+
+.faq-q {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.faq-q::before {
+  content: '//';
+  font-family: var(--mono);
+  color: var(--purple);
+  font-size: 12px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.faq-a {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  padding-left: 28px;
+  font-weight: 400;
+}
+
+/* ── FINAL CTA ── */
+.final-cta {
+  padding: 120px 24px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(108,71,255,0.15), transparent 70%),
+    var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.final-cta .section-title { font-size: clamp(40px, 8vw, 80px); margin-bottom: 0; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 40px 24px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+footer strong { color: var(--purple); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.live-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .overview-grid { grid-template-columns: 1fr; gap: 32px; }
+  .big-number { font-size: 80px; }
+  .price-top { padding: 28px 24px; }
+  .price-main { font-size: 60px; }
+  .price-includes, .price-cta-area { padding: 24px; }
+}
+
+@media (max-width: 500px) {
+  .hero-cta { flex-direction: column; align-items: center; }
+  .modules-grid { grid-template-columns: 1fr; }
+}
+
+/* sticky bar */
+.sticky-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(8,8,16,0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 100;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  flex-wrap: wrap;
+}
+
+.sticky-bar.visible { transform: translateY(0); }
+
+.sticky-text { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.sticky-text strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">
+    <span class="live-dot"></span>
+    Premium Kurs · Deutsch · Sofort Zugang
+  </div>
+
+  <h1 class="hero-title">
+    KI &<br><span class="accent">Automation</span><br>Mastery
+  </h1>
+
+  <p class="hero-sub">Von 0 auf vollautomatisiertes Business in 6 Wochen — ohne Vorkenntnisse, ohne Code, ohne Team.</p>
+
+  <div class="hero-stats">
+    <div class="stat-pill"><strong>6</strong> Module</div>
+    <div class="stat-pill"><strong>24</strong> Lektionen</div>
+    <div class="stat-pill"><strong>8h+</strong> Video</div>
+    <div class="stat-pill"><strong>∞</strong> Lifetime Zugang</div>
+    <div class="stat-pill"><strong>4</strong> Boni im Wert von 311€</div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#kaufen" class="btn-main">Jetzt starten — 297 €</a>
+    <a href="#curriculum" class="btn-ghost">Curriculum ansehen</a>
+  </div>
+
+  <p class="hero-price-note"><span>✓</span> 14 Tage Geld-zurück-Garantie &nbsp;·&nbsp; <span>✓</span> Einmalzahlung &nbsp;·&nbsp; <span>✓</span> Kein Abo</p>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="container">
+    <div class="section-label">Das Problem</div>
+    <div class="section-title">Du arbeitest<br>zu <em>viel.</em></div>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="pain-icon">⏳</span>
+        <div class="pain-title">Du verlierst täglich Stunden</div>
+        <div class="pain-text">Repetitive Aufgaben, manuelle Prozesse, Copy-Paste-Arbeit — all das frisst Zeit, die du für dein Wachstum bräuchtest.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">😵</span>
+        <div class="pain-title">KI-Overload ohne Ergebnis</div>
+        <div class="pain-text">ChatGPT, Claude, Make, Zapier — du weißt nicht wo du anfangen sollst und welche Tools wirklich für dein Business relevant sind.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">💸</span>
+        <div class="pain-title">Dein Business skaliert nicht</div>
+        <div class="pain-text">Mehr Umsatz bedeutet mehr Arbeit. Du bist das einzige System — und das ist das Problem.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="overview">
+  <div class="container">
+    <div class="section-label">Die Lösung</div>
+    <div class="section-title">6 Wochen.<br><em>1 System.</em></div>
+
+    <div class="overview-grid">
+      <div>
+        <span class="big-number">06</span>
+        <div class="module-list">
+          <div class="module-item">
+            <div class="module-dot" style="background:#00d4ff;"></div>
+            <div class="module-info">
+              <div class="module-week">WOCHE 1</div>
+              <div class="module-name">Das Fundament</div>
+              <div class="module-sub">Mindset, KI-Grundlagen & Tool-Setup</div>
+            </div>
+          </div>
+          <div class="module-item">
+            <div class="module-dot" style="background:#ff6b35;"></div>
+            <div class="module-info">
+              <div class="module-week">WOCHE 2</div>
+              <div class="module-name">KI als Mitarbeiter</div>
+              <div class="module-sub">Content, Texte & Kommunikation</div>
+            </div>
+          </div>
+          <div class="module-item">
+            <div class="module-dot" style="background:#7c3aed;"></div>
+            <div class="module-info">
+              <div class="module-week">WOCHE 3</div>
+              <div class="module-name">Make.com Meisterklasse</div>
+              <div class="module-sub">Automation ohne Code</div>
+            </div>
+          </div>
+          <div class="module-item">
+            <div class="module-dot" style="background:#10b981;"></div>
+            <div class="module-info">
+              <div class="module-week">WOCHE 4</div>
+              <div class="module-name">Dein digitales Produkt</div>
+              <div class="module-sub">Erstellen, Launchen & Verkaufen</div>
+            </div>
+          </div>
+          <div class="module-item">
+            <div class="module-dot" style="background:#f59e0b;"></div>
+            <div class="module-info">
+              <div class="module-week">WOCHE 5</div>
+              <div class="module-name">Automatischer Verkauf</div>
+              <div class="module-sub">E-Mail & Funnel System</div>
+            </div>
+          </div>
+          <div class="module-item">
+            <div class="module-dot" style="background:#ff2d55;"></div>
+            <div class="module-info">
+              <div class="module-week">WOCHE 6</div>
+              <div class="module-name">Skalierung & Freiheit</div>
+              <div class="module-sub">Von 1k auf 10k pro Monat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size:17px; color:var(--muted); line-height:1.8; font-weight:400; margin-bottom:28px;">
+          In 6 Wochen baust du ein vollautomatisches System, das Content erstellt, Leads erfasst, Kunden onboardet und Produkte verkauft — während du schläfst.
+        </p>
+        <p style="font-size:17px; color:var(--muted); line-height:1.8; font-weight:400; margin-bottom:40px;">
+          Kein Coding. Keine Agentur. Keine Vorkenntnisse. Nur du, die richtigen Tools und eine klare Schritt-für-Schritt-Anleitung auf Deutsch.
+        </p>
+        <a href="#kaufen" class="btn-main" style="display:inline-block;">Zum Kurs →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="curriculum" id="curriculum">
+  <div class="container">
+    <div class="section-label">Kursinhalt</div>
+    <div class="section-title">Was du<br><em>lernst.</em></div>
+
+    <div class="modules-grid">
+
+      <!-- Modul 1 -->
+      <div class="mod-card">
+        <div class="mod-header">
+          <div class="mod-num" style="background:rgba(0,212,255,0.1);color:#00d4ff;">01</div>
+          <div>
+            <div class="mod-title">Das Fundament</div>
+            <div class="mod-sub">WOCHE 1 · 77 MIN</div>
+          </div>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson-row"><span class="nr">1.1</span> Willkommen & Kursübersicht<span class="dur">12 Min</span></div>
+          <div class="lesson-row"><span class="nr">1.2</span> KI verstehen – ohne Technik-Kauderwelsch<span class="dur">18 Min</span></div>
+          <div class="lesson-row"><span class="nr">1.3</span> Automation-Grundlagen<span class="dur">22 Min</span></div>
+          <div class="lesson-row"><span class="nr">1.4</span> Tools & Setup – alles kostenlos<span class="dur">25 Min</span></div>
+        </div>
+      </div>
+
+      <!-- Modul 2 -->
+      <div class="mod-card">
+        <div class="mod-header">
+          <div class="mod-num" style="background:rgba(255,107,53,0.1);color:#ff6b35;">02</div>
+          <div>
+            <div class="mod-title">KI als Mitarbeiter</div>
+            <div class="mod-sub">WOCHE 2 · 104 MIN</div>
+          </div>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson-row"><span class="nr">2.1</span> KI schreibt deine Texte<span class="dur">20 Min</span></div>
+          <div class="lesson-row"><span class="nr">2.2</span> Social Media auf Autopilot<span class="dur">28 Min</span></div>
+          <div class="lesson-row"><span class="nr">2.3</span> KI-Videos ohne Kamera<span class="dur">32 Min</span></div>
+          <div class="lesson-row"><span class="nr">2.4</span> Kundenservice automatisieren<span class="dur">24 Min</span></div>
+        </div>
+      </div>
+
+      <!-- Modul 3 -->
+      <div class="mod-card">
+        <div class="mod-header">
+          <div class="mod-num" style="background:rgba(124,58,237,0.1);color:#7c3aed;">03</div>
+          <div>
+            <div class="mod-title">Make.com Meisterklasse</div>
+            <div class="mod-sub">WOCHE 3 · 148 MIN</div>
+          </div>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson-row"><span class="nr">3.1</span> Make.com von A bis Z<span class="dur">35 Min</span></div>
+          <div class="lesson-row"><span class="nr">3.2</span> Die 10 profitabelsten Automationen<span class="dur">45 Min</span></div>
+          <div class="lesson-row"><span class="nr">3.3</span> KI + Make.com kombinieren<span class="dur">38 Min</span></div>
+          <div class="lesson-row"><span class="nr">3.4</span> Workflows verkaufen<span class="dur">30 Min</span></div>
+        </div>
+      </div>
+
+      <!-- Modul 4 -->
+      <div class="mod-card">
+        <div class="mod-header">
+          <div class="mod-num" style="background:rgba(16,185,129,0.1);color:#10b981;">04</div>
+          <div>
+            <div class="mod-title">Dein digitales Produkt</div>
+            <div class="mod-sub">WOCHE 4 · 120 MIN</div>
+          </div>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson-row"><span class="nr">4.1</span> Das perfekte Produkt finden<span class="dur">22 Min</span></div>
+          <div class="lesson-row"><span class="nr">4.2</span> Kurs & E-Book mit KI erstellen<span class="dur">40 Min</span></div>
+          <div class="lesson-row"><span class="nr">4.3</span> Gumroad Shop aufsetzen<span class="dur">25 Min</span></div>
+          <div class="lesson-row"><span class="nr">4.4</span> Launch-Strategie<span class="dur">33 Min</span></div>
+        </div>
+      </div>
+
+      <!-- Modul 5 -->
+      <div class="mod-card">
+        <div class="mod-header">
+          <div class="mod-num" style="background:rgba(245,158,11,0.1);color:#f59e0b;">05</div>
+          <div>
+            <div class="mod-title">Automatischer Verkauf</div>
+            <div class="mod-sub">WOCHE 5 · 115 MIN</div>
+          </div>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson-row"><span class="nr">5.1</span> E-Mail Liste aufbauen<span class="dur">28 Min</span></div>
+          <div class="lesson-row"><span class="nr">5.2</span> Die 7-Tage E-Mail Sequenz<span class="dur">35 Min</span></div>
+          <div class="lesson-row"><span class="nr">5.3</span> Sales Page erstellen<span class="dur">30 Min</span></div>
+          <div class="lesson-row"><span class="nr">5.4</span> Affiliate System aufbauen<span class="dur">22 Min</span></div>
+        </div>
+      </div>
+
+      <!-- Modul 6 -->
+      <div class="mod-card">
+        <div class="mod-header">
+          <div class="mod-num" style="background:rgba(255,45,85,0.1);color:#ff2d55;">06</div>
+          <div>
+            <div class="mod-title">Skalierung & Freiheit</div>
+            <div class="mod-sub">WOCHE 6 · 135 MIN</div>
+          </div>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson-row"><span class="nr">6.1</span> Zahlen verstehen & optimieren<span class="dur">25 Min</span></div>
+          <div class="lesson-row"><span class="nr">6.2</span> Paid Ads mit kleinem Budget<span class="dur">38 Min</span></div>
+          <div class="lesson-row"><span class="nr">6.3</span> Membership & Recurring Revenue<span class="dur">30 Min</span></div>
+          <div class="lesson-row"><span class="nr">6.4</span> Das vollautomatische Business<span class="dur">42 Min</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BONI -->
+<section class="boni">
+  <div class="container">
+    <div class="section-label">Exklusive Boni</div>
+    <div class="section-title">Gesamtwert:<br><em>311€ + mehr.</em></div>
+    <p style="margin-top:16px; color:var(--muted); font-size:15px; font-weight:400;">Inklusive — kein Aufpreis.</p>
+
+    <div class="boni-grid">
+      <div class="bonus-card">
+        <div class="bonus-wert">WERT: 97 €</div>
+        <span class="bonus-icon">⚡</span>
+        <div class="bonus-name">Prompt-Bibliothek</div>
+        <div class="bonus-desc">200+ getestete Prompts für Texte, Angebote, E-Mails, Social Media und mehr — sofort einsetzbar.</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-wert">WERT: 147 €</div>
+        <span class="bonus-icon">📦</span>
+        <div class="bonus-name">Make.com Template Pack</div>
+        <div class="bonus-desc">15 fertige Workflows zum Importieren — Lead-Erfassung, Rechnungen, Kundenservice und mehr.</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-wert">WERT: 67 €</div>
+        <span class="bonus-icon">✉️</span>
+        <div class="bonus-name">E-Mail Swipe File</div>
+        <div class="bonus-desc">30 fertige E-Mail-Vorlagen: Willkommen, Nurture, Sales, Reaktivierung — direkt anpassen & senden.</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-wert">WERT: UNBEZAHLBAR</div>
+        <span class="bonus-icon">🎯</span>
+        <div class="bonus-name">Private Community</div>
+        <div class="bonus-desc">Lifetime-Zugang zur exklusiven Mitglieder-Community. Fragen stellen, Feedback bekommen, Netzwerk aufbauen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="kaufen">
+  <div class="container">
+    <div class="section-label">Investition</div>
+    <div class="section-title">Einmalig.<br><em>Für immer.</em></div>
+
+    <div class="price-box">
+      <div class="price-top">
+        <div class="price-label">KI & AUTOMATION MASTERY</div>
+        <div class="price-main"><span class="price-currency">€</span>297</div>
+        <div class="price-note-sub">Einmalzahlung · kein Abo · Lifetime Zugang</div>
+      </div>
+
+      <div class="price-includes">
+        <div class="include-row"><span class="check">✓</span> 6 Module mit 24 Lektionen (8h+ Video)</div>
+        <div class="include-row"><span class="check">✓</span> Make.com Meisterklasse (Automation ohne Code)</div>
+        <div class="include-row"><span class="check">✓</span> Digitales Produkt erstellen & launchen</div>
+        <div class="include-row"><span class="check">✓</span> E-Mail & Funnel System aufbauen</div>
+        <div class="include-row"><span class="check">✓</span> Bonus: Prompt-Bibliothek (200+ Prompts)</div>
+        <div class="include-row"><span class="check">✓</span> Bonus: Make.com Template Pack (15 Workflows)</div>
+        <div class="include-row"><span class="check">✓</span> Bonus: E-Mail Swipe File (30 Vorlagen)</div>
+        <div class="include-row"><span class="check">✓</span> Bonus: Lifetime Community-Zugang</div>
+        <div class="include-row"><span class="check">✓</span> Alle zukünftigen Updates inklusive</div>
+      </div>
+
+      <div class="price-cta-area">
+        <a href="https://www.checkout-ds24.com/product/696831" class="btn-main" style="display:block; text-align:center; font-size:14px; padding:20px;">
+          Jetzt kaufen — sicher via Digistore24 →
+        </a>
+        <div class="price-guarantee">
+          🛡️ 14 Tage Geld-zurück-Garantie — ohne Fragen
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container" style="text-align:center;">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Häufige<br><em>Fragen.</em></div>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Brauche ich Vorkenntnisse?</div>
+      <div class="faq-a">Nein. Der Kurs startet bei null und führt dich Schritt für Schritt. Kein Coding, kein Technik-Hintergrund erforderlich.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Wie lange habe ich Zugang?</div>
+      <div class="faq-a">Lifetime. Du kaufst einmal und behältst dauerhaft Zugang — inklusive aller zukünftigen Updates und neuen Lektionen.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Was wenn mir der Kurs nicht gefällt?</div>
+      <div class="faq-a">14 Tage Geld-zurück-Garantie ohne Bedingungen. Einfach eine E-Mail schreiben, Rückerstattung erfolgt innerhalb von 24h.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Wie schnell sehe ich erste Ergebnisse?</div>
+      <div class="faq-a">Viele Teilnehmer richten bereits in Woche 1 ihre ersten Automationen ein. Erste Einnahmen sind je nach Einsatz in Woche 3–4 realistisch.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Welche Tools brauche ich?</div>
+      <div class="faq-a">Alle im Kurs verwendeten Tools haben kostenlose Pläne. Du kannst mit 0€ Toolkosten starten — alles wird im Kurs erklärt.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Gibt es eine Community?</div>
+      <div class="faq-a">Ja. Du bekommst Lifetime-Zugang zur privaten Mitglieder-Community. Direkter Austausch, gegenseitiges Feedback und Netzwerk.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <div class="section-label">Letzter Schritt</div>
+    <div class="section-title">Dein Business.<br><em>Automatisiert.</em></div>
+    <p style="margin-top:24px; color:var(--muted); font-size:17px; max-width:500px; margin-left:auto; margin-right:auto; line-height:1.7; font-weight:400;">
+      In 6 Wochen hast du ein System, das für dich arbeitet. Die einzige Frage ist: wann startest du?
+    </p>
+    <div style="margin-top:48px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a href="#kaufen" class="btn-main" style="font-size:14px; padding:20px 52px;">Jetzt starten — 297 €</a>
+    </div>
+    <p class="hero-price-note" style="margin-top:20px;"><span>✓</span> 14 Tage Geld-zurück-Garantie &nbsp;·&nbsp; <span>✓</span> Sofort Zugang</p>
+  </div>
+</section>
+
+<footer>
+  <strong>KI & Automation Mastery</strong> &nbsp;·&nbsp; Premium Online-Kurs auf Deutsch &nbsp;·&nbsp; Verkauft via Digistore24
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-text"><strong>KI & Automation Mastery</strong> — 6 Wochen · 24 Lektionen</div>
+  <a href="#kaufen" class="btn-main" style="padding:12px 28px; font-size:11px;">Jetzt kaufen — 297 €</a>
+</div>
+
+<script>
+  const bar = document.getElementById('stickyBar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) bar.classList.add('visible');
+    else bar.classList.remove('visible');
+  });
+</script>
+
+<script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
+<script type="text/javascript">
+digistorePromocode( { "product_id": 696831, "adjust_domain": true } );
+</script>
+</body>
+</html>
